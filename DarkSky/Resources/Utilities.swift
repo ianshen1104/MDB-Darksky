@@ -16,4 +16,19 @@ class Utilities {
         alert.addAction(defaultAction)
         vc.present(alert, animated: true, completion: nil)
     }
+    
+    static func timeConverter(unixTimestamp: Int, timeZone: TimeZone, showHrMin: Bool) -> String {
+        let date = Date(timeIntervalSince1970: TimeInterval(unixTimestamp))
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = timeZone
+        //dateFormatter.locale = NSLocale.current
+        if showHrMin {
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        } else {
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+        }
+        let strDate = dateFormatter.string(from: date)
+        return strDate
+    }
+    
 }
