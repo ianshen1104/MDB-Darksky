@@ -33,9 +33,20 @@ class CurrentDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let gifURL : String = "https://data.whicdn.com/images/320490783/original.gif"
-        let imageURL = UIImage.gifImageWithURL(gifURL)
-        self.backgroundImage = UIImageView(image: imageURL)
+//        let gifURL : String = "https://data.whicdn.com/images/320490783/original.gif"
+//        let image = UIImage.gifImageWithURL(gifURL)
+        var image = UIImage(named: "default-background")
+        let icon = currentWeatherForcast?.icon
+        if icon == "clear-day" || icon == "wind" {
+            image = UIImage(named: "detailVC-background-1")
+        } else if icon == "cloudy" || icon == "partly-cloudy-day" {
+            image = UIImage(named: "detailVC-background-2")
+        } else if icon == "rain" || icon == "partly-cloudy-night" || icon == "fog" {
+            image = UIImage(named: "detailVC-background-3")
+        } else if icon == "clear-night" || icon == "sleet" || icon == "snow" {
+            image = UIImage(named: "detailVC-background-4")
+        }
+        self.backgroundImage = UIImageView(image: image)
         self.backgroundImage.contentMode = .scaleAspectFill
         view.insertSubview(self.backgroundImage, at: 0)
         

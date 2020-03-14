@@ -21,16 +21,21 @@ class MainVC: UIViewController {
     var currentWeatherForcast: CurrentWeather?
     var dailyWeatherForcasts: [DailyWeather]?
     var curTimezone: TimeZone?
+    var physicalLocation = CLLocation(latitude: 37.8715, longitude: -122.2730)
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         searchBar.delegate = self
         locationManager = CLLocationManager()
-        locationManager?.delegate = self
         locationManager?.requestAlwaysAuthorization()
-
-        updateWeatherLocation(location: "2400 Durant Ave, Berkeley, CA")
+        locationManager?.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager?.delegate = self
+            locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager?.startUpdatingLocation()
+        }
+        updateWeatherLocation(location: physicalLocation)
     }
 
     @IBAction func seeMoreButtonClicked(_ sender: Any) {

@@ -58,6 +58,9 @@ class DarkSkyManager {
                 print("In getDailyForecast: Error parsing fields using JSONDecoder")
                 return
             }
+            for dailyWeather in request.daily.data {
+                CacheManager.storeInDatabase(dailyweather: dailyWeather)
+            }
             completion(request.daily.data)
         }
         task.resume()
