@@ -25,5 +25,6 @@ extension MainVC: CLLocationManagerDelegate {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         self.physicalLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
         print("LOCATION UPDATED")
+        print("\(Double(locValue.latitude)) \(Double(locValue.longitude))")
     }
 }

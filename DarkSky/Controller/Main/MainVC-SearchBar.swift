@@ -15,12 +15,12 @@ extension MainVC: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if let locationString = searchBar.text, !locationString.isEmpty {
-            updateWeatherLocation(locationStr: locationString)
+            updateWeatherLocation(location: locationString)
         }
     }
     
-    func updateWeatherLocation (locationStr: String) {
-        CLGeocoder().geocodeAddressString(locationStr) { (placemarks:[CLPlacemark]?, error: Error?) in
+    func updateWeatherLocation (location: String) {
+        CLGeocoder().geocodeAddressString(location) { (placemarks:[CLPlacemark]?, error: Error?) in
             guard error == nil else {
                 Utilities.displayAlert(title: "Location Error 1", message: "CLGeocoder returned an error when processing the location you entered", vc: self)
                 return

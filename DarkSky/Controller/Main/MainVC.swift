@@ -35,6 +35,7 @@ class MainVC: UIViewController {
             locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager?.startUpdatingLocation()
         }
+        //updateWeatherLocation(location: "San Francisco")
         updateWeatherLocation(location: physicalLocation)
     }
 
